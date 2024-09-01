@@ -1,4 +1,90 @@
 declare namespace API {
+  type Article = {
+    authorId?: number;
+    category?: string;
+    content?: string;
+    createdTime?: string;
+    favourNum?: number;
+    id?: number;
+    isDeleted?: number;
+    likeNum?: number;
+    status?: Record<string, any>;
+    tags?: string;
+    title?: string;
+    updatedTime?: string;
+  };
+
+  type ArticleAddRequest = {
+    authorId?: number;
+    category?: string;
+    content?: string;
+    tags?: string;
+    title?: string;
+  };
+
+  type ArticleEditRequest = {
+    category?: string;
+    content?: string;
+    id?: number;
+    tags?: string;
+    title?: string;
+  };
+
+  type ArticleFavourAddRequest = {
+    id?: number;
+  };
+
+  type ArticleFavourQueryRequest = {
+    articleQueryRequest?: ArticleQueryRequest;
+    current?: number;
+    pageSize?: number;
+    sortField?: string;
+    sortOrder?: string;
+    userId?: number;
+  };
+
+  type ArticleQueryRequest = {
+    authorId?: number;
+    category?: string;
+    content?: string;
+    current?: number;
+    id?: number;
+    pageSize?: number;
+    sortField?: string;
+    sortOrder?: string;
+    status?: Record<string, any>;
+    tags?: string;
+    title?: string;
+  };
+
+  type ArticleUpdateRequest = {
+    authorId?: number;
+    category?: string;
+    content?: string;
+    id?: number;
+    status?: Record<string, any>;
+    tags?: string;
+    title?: string;
+  };
+
+  type ArticleVO = {
+    authorId?: number;
+    category?: string;
+    content?: string;
+    favourNum?: number;
+    id?: number;
+    likeNum?: number;
+    tags?: string;
+    title?: string;
+    user?: UserVO;
+  };
+
+  type BaseResponseArticleVO_ = {
+    code?: number;
+    data?: ArticleVO;
+    message?: string;
+  };
+
   type BaseResponseBoolean_ = {
     code?: number;
     data?: boolean;
@@ -23,15 +109,15 @@ declare namespace API {
     message?: string;
   };
 
-  type BaseResponsePagePost_ = {
+  type BaseResponsePageArticle_ = {
     code?: number;
-    data?: PagePost_;
+    data?: PageArticle_;
     message?: string;
   };
 
-  type BaseResponsePagePostVO_ = {
+  type BaseResponsePageArticleVO_ = {
     code?: number;
-    data?: PagePostVO_;
+    data?: PageArticleVO_;
     message?: string;
   };
 
@@ -44,12 +130,6 @@ declare namespace API {
   type BaseResponsePageUserVO_ = {
     code?: number;
     data?: PageUserVO_;
-    message?: string;
-  };
-
-  type BaseResponsePostVO_ = {
-    code?: number;
-    data?: PostVO;
     message?: string;
   };
 
@@ -75,7 +155,7 @@ declare namespace API {
     id?: number;
   };
 
-  type getPostVOByIdUsingGETParams = {
+  type getArticleVOByIdUsingGETParams = {
     /** id */
     id?: number;
   };
@@ -105,27 +185,27 @@ declare namespace API {
     column?: string;
   };
 
-  type PagePost_ = {
+  type PageArticle_ = {
     countId?: string;
     current?: number;
     maxLimit?: number;
     optimizeCountSql?: boolean;
     orders?: OrderItem[];
     pages?: number;
-    records?: Post[];
+    records?: Article[];
     searchCount?: boolean;
     size?: number;
     total?: number;
   };
 
-  type PagePostVO_ = {
+  type PageArticleVO_ = {
     countId?: string;
     current?: number;
     maxLimit?: number;
     optimizeCountSql?: boolean;
     orders?: OrderItem[];
     pages?: number;
-    records?: PostVO[];
+    records?: ArticleVO[];
     searchCount?: boolean;
     size?: number;
     total?: number;
@@ -155,87 +235,6 @@ declare namespace API {
     searchCount?: boolean;
     size?: number;
     total?: number;
-  };
-
-  type Post = {
-    content?: string;
-    createTime?: string;
-    favourNum?: number;
-    id?: number;
-    isDelete?: number;
-    tags?: string;
-    thumbNum?: number;
-    title?: string;
-    updateTime?: string;
-    userId?: number;
-  };
-
-  type PostAddRequest = {
-    content?: string;
-    tags?: string[];
-    title?: string;
-  };
-
-  type PostEditRequest = {
-    content?: string;
-    id?: number;
-    tags?: string[];
-    title?: string;
-  };
-
-  type PostFavourAddRequest = {
-    postId?: number;
-  };
-
-  type PostFavourQueryRequest = {
-    current?: number;
-    pageSize?: number;
-    postQueryRequest?: PostQueryRequest;
-    sortField?: string;
-    sortOrder?: string;
-    userId?: number;
-  };
-
-  type PostQueryRequest = {
-    content?: string;
-    current?: number;
-    favourUserId?: number;
-    id?: number;
-    notId?: number;
-    orTags?: string[];
-    pageSize?: number;
-    searchText?: string;
-    sortField?: string;
-    sortOrder?: string;
-    tags?: string[];
-    title?: string;
-    userId?: number;
-  };
-
-  type PostThumbAddRequest = {
-    postId?: number;
-  };
-
-  type PostUpdateRequest = {
-    content?: string;
-    id?: number;
-    tags?: string[];
-    title?: string;
-  };
-
-  type PostVO = {
-    content?: string;
-    createTime?: string;
-    favourNum?: number;
-    hasFavour?: boolean;
-    hasThumb?: boolean;
-    id?: number;
-    tagList?: string[];
-    thumbNum?: number;
-    title?: string;
-    updateTime?: string;
-    user?: UserVO;
-    userId?: number;
   };
 
   type sendEmailUsingGETParams = {

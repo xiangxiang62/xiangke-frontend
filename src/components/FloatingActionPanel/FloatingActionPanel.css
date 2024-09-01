@@ -26,3 +26,40 @@
 .action-button:hover {
   background-color: #b3e5fc; /* 悬停效果 */
 }
+
+.liked {
+  background-color: yellow; /* 点赞后的颜色 */
+  color: black;
+}
+
+.starred {
+  background-color: yellow; /* 收藏后的颜色 */
+  color: black;
+}
+
+.share-container {
+  position: relative; /* 使弹窗相对于按钮定位 */
+}
+
+.share-popup {
+  display: none;
+  position: absolute;
+  left: -180px; /* 弹窗在按钮左侧显示 */
+  top: 50%; /* 垂直居中对齐 */
+  transform: translateY(-50%); /* 垂直居中 */
+  background-color: white;
+  border: 1px solid #ddd;
+  padding: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  z-index: 1000; /* 确保弹窗在按钮上方 */
+  width: 200px; /* 根据需要调整宽度 */
+}
+
+.share-popup img {
+  max-width: 100%;
+}
+
+.action-button:hover .share-popup {
+  display: block;
+}
