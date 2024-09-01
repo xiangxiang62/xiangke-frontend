@@ -1,0 +1,28 @@
+.floating-action-panel {
+  position: fixed;
+  right: 20px; /* 距离屏幕右侧的距离 */
+  top: 50%; /* 垂直居中 */
+  transform: translateY(-50%); /* 垂直居中对齐 */
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* 按钮之间的间距 */
+  background-color: #4fc3f7; /* 稍重的浅蓝色背景 */
+  padding: 10px;
+  border-radius: 25px; /* 胶囊状 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 添加阴影 */
+  z-index: 1000; /* 确保面板在最上层 */
+}
+
+.action-button {
+  width: 40px;
+  height: 40px;
+  border: none;
+  background-color: #e0f7fa; /* 按钮背景色 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.action-button:hover {
+  background-color: #b3e5fc; /* 悬停效果 */
+}
