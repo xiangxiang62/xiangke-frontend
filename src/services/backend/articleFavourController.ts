@@ -37,7 +37,7 @@ export async function listMyFavourArticleByPageUsingPost(
   body: API.ArticleQueryRequest,
   options?: { [key: string]: any },
 ) {
-  return request<API.BaseResponsePageArticleVO_>('/api/article_favour/my/list/page', {
+  return request<API.BaseResponsePageArticleVO_>('/article_favour/my/list/page', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

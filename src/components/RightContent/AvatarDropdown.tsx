@@ -1,5 +1,5 @@
 import { userLogout } from '@/services/backend/userController';
-import { LogoutOutlined, SettingOutlined, UserOutlined } from '@ant-design/icons';
+import {LogoutOutlined, SettingOutlined, StarOutlined, UserOutlined} from '@ant-design/icons';
 import { history, useModel } from '@umijs/max';
 import { Avatar, Button, Space } from 'antd';
 import { stringify } from 'querystring';
@@ -46,6 +46,13 @@ export const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu }) => {
         loginOut();
         return;
       }
+
+      // 新增处理逻辑: 如果点击的是“我的收藏”
+      if (key === 'star') {
+        history.push('/my/favorites'); // 假设你想跳转到 '/my/favorites' 页面
+        return;
+      }
+
       history.push(`/account/${key}`);
     },
     [setInitialState],
@@ -81,6 +88,11 @@ export const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu }) => {
           },
         ]
       : []),
+    {
+      key: 'star',
+      icon: <StarOutlined />,
+      label: '我的收藏',
+    },
     {
       key: 'logout',
       icon: <LogoutOutlined />,
