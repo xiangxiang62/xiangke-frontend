@@ -22,6 +22,7 @@ const ArticleList: React.FC<ArticleListProps> = ({ articles }) => {
       {articles.map(article => (
         <Card
           key={article.id}
+          hoverable={true}
           title={
             <div style={{ display: 'flex', alignItems: 'center' }}>
               <img
@@ -41,7 +42,7 @@ const ArticleList: React.FC<ArticleListProps> = ({ articles }) => {
               </Title>
             </div>
           }
-          extra={<Button type="link">阅读更多</Button>}
+          // extra={<Button type="link">阅读更多</Button>}
           bordered={false}
           style={{ width: '100%', marginBottom: '20px' }} // 设置底部间隔
           actions={[
