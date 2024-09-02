@@ -52,6 +52,11 @@ export const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu }) => {
         history.push('/my/favorites'); // 假设你想跳转到 '/my/favorites' 页面
         return;
       }
+      if (key === 'userInfo') {
+        history.push('/my/userInfo'); // 假设你想跳转到 '/my/favorites' 页面
+        return;
+      }
+
 
       history.push(`/account/${key}`);
     },
@@ -88,6 +93,11 @@ export const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu }) => {
           },
         ]
       : []),
+    {
+      key: 'userInfo',
+      icon: <StarOutlined />,
+      label: '个人信息',
+    },
     {
       key: 'star',
       icon: <StarOutlined />,

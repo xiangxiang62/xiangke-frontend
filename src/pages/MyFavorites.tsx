@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { PageContainer } from '@ant-design/pro-components';
 import ArticleList from '@/components/ArticleList/ArticleList';
 import { listArticleVoByPageUsingPost } from "@/services/backend/articleController";
-import { Empty, Pagination } from "antd";
+import {Empty, Pagination, Spin} from "antd";
 import Search from "antd/es/input/Search";
 import {listMyFavourArticleByPageUsingPost} from "@/services/backend/articleFavourController";
 
@@ -63,7 +63,7 @@ const Welcome: React.FC = () => {
   };
 
   if (loading) {
-    return <div>加载中...</div>;
+    return <div><Spin tip="Loading" size="large"/></div>
   }
 
   return (

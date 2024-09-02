@@ -4,9 +4,11 @@ export default [
     layout: false,
     routes: [{path: '/user/login', component: './User/Login'}, {path: '/user/register', component: './User/Register'}]
   },
-  {layout: false,path: '/welcome/:id', icon: 'smile', component: './Welcome', name: "首页"},
+  {
+    hideInMenu: true,path: '/welcome/:id', icon: 'smile', component: './Welcome', name: "首页"},
   {path: '/home', icon: 'home', component: './HomePage', name: "文章列表"},
-  {path: '/my/favorites', icon: 'star', component: './MyFavorites', name: "我的收藏"},
+  {path: '/my/favorites', icon: 'star', component: './MyFavorites', name: "我的收藏",hideInMenu: true},
+  {path: '/my/userInfo', icon: 'user', component: './MyUserInfo', name: "个人信息",hideInMenu: true},
   {
     path: '/admin',
     icon: 'crown',

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { PageContainer } from '@ant-design/pro-components';
 import ArticleList from '@/components/ArticleList/ArticleList';
 import { listArticleVoByPageUsingPost } from "@/services/backend/articleController";
-import { Empty, Pagination } from "antd";
+import {Empty, Pagination, Spin} from "antd";
 import Search from "antd/es/input/Search";
 
 const Welcome: React.FC = () => {
@@ -62,7 +62,14 @@ const Welcome: React.FC = () => {
   };
 
   if (loading) {
-    return <div>加载中...</div>;
+    return <div style={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: '100vh' // 让父容器占满整个视窗高度
+    }}>
+      <Spin tip="Loading" size="large" />
+    </div>
   }
 
   return (

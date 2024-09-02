@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { PageContainer } from '@ant-design/pro-components';
 import { useModel } from '@umijs/max';
-import { Card, Input, theme } from 'antd';
+import {Card, Input, Spin, theme} from 'antd';
 import { MdViewer } from '@/components/MdEditor/ReactMdEditorByView';
 import FloatingActionPanel from '@/components/FloatingActionPanel/FloatingActionPanel';
 import Comments from '@/components/Comment/Comment';
@@ -47,7 +47,7 @@ const Welcome: React.FC = () => {
   }, []);
 
   if (loading) {
-    return <div>加载中...</div>; // 显示加载状态
+    return <div><Spin tip="Loading" size="large"/></div> // 显示加载状态
   }
 
   return (
