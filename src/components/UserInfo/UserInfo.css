@@ -1,0 +1,17 @@
+/* UserInfo.css */
+.user-info-container {
+  display: flex;
+  align-items: flex-end; /* 垂直对齐到头像底部 */
+
+}
+
+.user-name-tag {
+  margin-left: -30px; /* 头像和标签之间的间距 */
+  padding: 5px 10px;
+  background: linear-gradient(to right, deepskyblue, #dafbe1); /* 蓝色到浅蓝色的渐变 */
+  border-radius: 12px; /* 标签圆角 */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* 标签阴影效果 */
+  font-size: 16px; /* 标签字体大小 */
+  color: #000000; /* 标签文字颜色 */
+
+}

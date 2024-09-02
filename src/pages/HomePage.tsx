@@ -75,7 +75,7 @@ const Welcome: React.FC = () => {
   return (
     <PageContainer
       style={{
-        background: 'linear-gradient(to bottom, #C0C0C0, #DCDCDC)', // 淡蓝色上下渐变
+        background: 'linear-gradient(to bottom, #DCDCDC, #C0C0C0)', // 淡蓝色上下渐变
         minHeight: "1000px"
       }}
     >
@@ -94,9 +94,9 @@ const Welcome: React.FC = () => {
           value={searchValue} // 绑定输入框的值
           onChange={handleSearchChange} // 监听输入框变化
           onSearch={onSearch} // 搜索按钮点击时触发搜索
-          style={{ width: "600px" }}
+          style={{ width: "60vw" }}
         />
-        <div style={{ padding: '80px 20px', width: '100%' }}>
+        <div style={{ padding: '60px 20px 0px 20px', width: '120vw' }}>
           {articleContentList && articleContentList.length > 0 ? (
             <ArticleList  articles={articleContentList} />
           ) : (

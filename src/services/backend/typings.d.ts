@@ -42,6 +42,7 @@ declare namespace API {
     status?: Record<string, any>;
     tags?: string;
     title?: string;
+    createdTime?:string;
   };
 
   type ArticleUpdateRequest = {

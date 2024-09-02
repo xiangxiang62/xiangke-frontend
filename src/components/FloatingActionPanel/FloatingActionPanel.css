@@ -1,18 +1,20 @@
+/* 基础样式 - Web 端 */
 .floating-action-panel {
   position: fixed;
   right: 20px; /* 距离屏幕右侧的距离 */
   top: 50%; /* 垂直居中 */
   transform: translateY(-50%); /* 垂直居中对齐 */
   display: flex;
-  flex-direction: column;
+  flex-direction: column; /* 默认竖直排列 */
   gap: 10px; /* 按钮之间的间距 */
-  background-color: #4fc3f7; /* 稍重的浅蓝色背景 */
+  background-color: #4fc3f7; /* 胶囊背景颜色 */
   padding: 10px;
   border-radius: 25px; /* 胶囊状 */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 添加阴影 */
-  z-index: 1000; /* 确保面板在最上层 */
+  z-index: 1; /* 确保面板在最上层 */
 }
 
+/* 按钮样式 */
 .action-button {
   width: 40px;
   height: 40px;
@@ -23,10 +25,12 @@
   justify-content: center;
 }
 
+/* 按钮悬停效果 */
 .action-button:hover {
   background-color: #b3e5fc; /* 悬停效果 */
 }
 
+/* 点赞和收藏后的颜色 */
 .liked {
   background-color: yellow; /* 点赞后的颜色 */
   color: black;
@@ -37,6 +41,7 @@
   color: black;
 }
 
+/* 分享弹窗样式 */
 .share-container {
   position: relative; /* 使弹窗相对于按钮定位 */
 }
@@ -44,9 +49,9 @@
 .share-popup {
   display: none;
   position: absolute;
-  left: -180px; /* 弹窗在按钮左侧显示 */
-  top: 50%; /* 垂直居中对齐 */
-  transform: translateY(-50%); /* 垂直居中 */
+  bottom: 100%; /* 弹窗在按钮上面显示 */
+  left: 50%; /* 水平居中对齐 */
+  transform: translateX(-50%); /* 水平居中对齐 */
   background-color: white;
   border: 1px solid #ddd;
   padding: 10px;
@@ -63,3 +68,42 @@
 .action-button:hover .share-popup {
   display: block;
 }
+
+/* 手机端样式 */
+/* 手机端样式 */
+@media (max-width: 767px) {
+  .floating-action-panel {
+    position: fixed;
+    top: 100vh; /* 将面板定位在屏幕视口底部 */
+    transform: translateY(-50px); /* 根据需要调整，确保面板位于屏幕底部 */
+    right: 0;
+    width: 100%; /* 面板宽度占据整个屏幕宽度 */
+    height: 50px; /* 固定高度 */
+    display: flex;
+    flex-direction: row; /* 横向排列 */
+    justify-content: space-around; /* 平均分布按钮 */
+    align-items: center; /* 垂直居中对齐按钮 */
+    padding: 0 10px; /* 添加左右内边距 */
+    background-color: #4fc3f7; /* 胶囊背景颜色保持一致 */
+    border-radius: 25px; /* 胶囊边角 */
+  }
+
+  .action-button {
+    width: 35px; /* 手机端按钮稍小 */
+    height: 35px;
+  }
+
+  .share-popup {
+    position: absolute; /* 确保弹窗在按钮上面显示 */
+    bottom: 100%; /* 在分享按钮上面显示 */
+    left: 50%; /* 水平居中 */
+    transform: translateX(-50%); /* 水平居中对齐 */
+    width: 150px; /* 根据需要调整宽度 */
+    background-color: white; /* 胶囊背景颜色 */
+    border: 1px solid #ddd; /* 边框 */
+    padding: 10px; /* 内边距 */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); /* 阴影 */
+    border-radius: 4px; /* 圆角 */
+  }
+}
+

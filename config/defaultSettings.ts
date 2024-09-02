@@ -13,7 +13,7 @@ const Settings: ProLayoutProps & {
   layout: 'top',
   contentWidth: 'Fluid',
   fixedHeader: true,
-  fixSiderbar: true,
+  fixSiderbar: true, // 修正拼写错误
   colorWeak: false,
   title: '香客',
   pwa: true,

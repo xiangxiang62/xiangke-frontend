@@ -1,7 +1,7 @@
 // ArticleList.tsx
 import React from 'react';
-import {Card, Typography, Space, Button, Avatar} from 'antd';
-import { LikeOutlined, StarOutlined } from '@ant-design/icons';
+import {Card,Badge, Typography, Space, Button, Avatar} from 'antd';
+import {CommentOutlined, LikeOutlined, StarOutlined} from '@ant-design/icons';
 
 
 interface ArticleListProps {
@@ -42,22 +42,30 @@ const ArticleList: React.FC<ArticleListProps> = ({ articles }) => {
               </Title>
             </div>
           }
-          // extra={<Button type="link">阅读更多</Button>}
           bordered={false}
-          style={{ width: '100%', marginBottom: '20px' }} // 设置底部间隔
-          actions={[
-            <Space key="actions">
-              <LikeOutlined /> {article.likeNum}
-              <StarOutlined /> {article.favourNum}
-            </Space>
-          ]}
+          style={{
+            width: '100%',
+            marginBottom: '20px', // 设置底部间隔
+            background: 'linear-gradient(to bottom, #B3E5FC, transparent)',
+            padding: '16px', // 内边距
+            borderRadius: '8px', // 卡片圆角
+          }}
+
         >
+
           <Paragraph ellipsis={{ rows: 2, expandable: true }}>
             {article.category}
           </Paragraph>
+          <br/>
+          <LikeOutlined /> {article.likeNum}
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <StarOutlined /> {article.favourNum}
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <CommentOutlined/> 0
         </Card>
       ))}
     </div>
+
   );
 };
 

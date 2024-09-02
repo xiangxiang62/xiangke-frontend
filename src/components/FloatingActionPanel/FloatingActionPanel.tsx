@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import {Button, Tooltip, Badge, Modal, message, Input, QRCode, Popover} from 'antd';
-import { LikeOutlined, StarOutlined, CommentOutlined, ExclamationCircleOutlined,ShareAltOutlined } from '@ant-design/icons';
-import './FloatingActionPanel.css';
-import { doArticleFavourUsingPost } from "@/services/backend/articleFavourController"; // 引入自定义样式
+import { Button, Tooltip, Badge, Modal, message, Input, QRCode, Popover } from 'antd';
+import { LikeOutlined, StarOutlined, CommentOutlined, ExclamationCircleOutlined, ShareAltOutlined } from '@ant-design/icons';
+import './FloatingActionPanel.css'; // 引入自定义样式
+import { doArticleFavourUsingPost } from "@/services/backend/articleFavourController";
 
 const { TextArea } = Input;
 const currentUrl = window.location.href;
@@ -113,13 +113,13 @@ const FloatingActionPanel: React.FC<FloatingActionPanelProps> = ({
             icon="/logo.png"
           />
         </div>} title="分享">
-        <div className="share-tooltip-content">
-          <Button
-            shape="circle"
-            icon={<ShareAltOutlined />}
-            className="action-button"
-          />
-        </div>
+          <div className="share-tooltip-content">
+            <Button
+              shape="circle"
+              icon={<ShareAltOutlined />}
+              className="action-button"
+            />
+          </div>
         </Popover>
       </Tooltip>
 

@@ -1,29 +1,25 @@
-import { userLogout } from '@/services/backend/userController';
-import {LogoutOutlined, SettingOutlined, StarOutlined, UserOutlined} from '@ant-design/icons';
-import { history, useModel } from '@umijs/max';
+import React, { useCallback } from 'react';
 import { Avatar, Button, Space } from 'antd';
+import { LogoutOutlined, SettingOutlined, StarOutlined, UserOutlined, EditOutlined } from '@ant-design/icons';
+import { history, useModel } from '@umijs/max';
 import { stringify } from 'querystring';
 import type { MenuInfo } from 'rc-menu/lib/interface';
-import React, { useCallback } from 'react';
 import { flushSync } from 'react-dom';
 import { Link } from 'umi';
 import HeaderDropdown from '../HeaderDropdown';
+import './HeaderDropdown.css';
+import {userLogout} from "@/services/backend/userController";  // 导入 CSS 文件
 
 export type GlobalHeaderRightProps = {
   menu?: boolean;
 };
 
 export const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu }) => {
-  /**
-   * 退出登录，并且将当前的 url 保存
-   */
   const loginOut = async () => {
     await userLogout();
     const { search, pathname } = window.location;
     const urlParams = new URL(window.location.href).searchParams;
-    /** 此方法会跳转到 redirect 参数所在的位置 */
     const redirect = urlParams.get('redirect');
-    // Note: There may be security issues, please note
     if (window.location.pathname !== '/user/login' && !redirect) {
       history.replace({
         pathname: '/user/login',
@@ -47,16 +43,14 @@ export const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu }) => {
         return;
       }
 
-      // 新增处理逻辑: 如果点击的是“我的收藏”
       if (key === 'star') {
-        history.push('/my/favorites'); // 假设你想跳转到 '/my/favorites' 页面
+        history.push('/my/favorites');
         return;
       }
       if (key === 'userInfo') {
-        history.push('/my/userInfo'); // 假设你想跳转到 '/my/favorites' 页面
+        history.push('/my/userInfo');
         return;
       }
-
 
       history.push(`/account/${key}`);
     },
@@ -65,33 +59,23 @@ export const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu }) => {
 
   const { currentUser } = initialState || {};
 
-  if (!currentUser) {
-    return (
-      <Link to="/user/login">
-        <Button type="primary" shape="round">
-          登录
-        </Button>
-      </Link>
-    );
-  }
-
   const menuItems = [
     ...(menu
       ? [
-          {
-            key: 'center',
-            icon: <UserOutlined />,
-            label: '个人中心',
-          },
-          {
-            key: 'settings',
-            icon: <SettingOutlined />,
-            label: '个人设置',
-          },
-          {
-            type: 'divider' as const,
-          },
-        ]
+        {
+          key: 'center',
+          icon: <UserOutlined />,
+          label: '个人中心',
+        },
+        {
+          key: 'settings',
+          icon: <SettingOutlined />,
+          label: '个人设置',
+        },
+        {
+          type: 'divider' as const,
+        },
+      ]
       : []),
     {
       key: 'userInfo',
@@ -110,24 +94,46 @@ export const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu }) => {
     },
   ];
 
+  if (!currentUser) {
+    return (
+      <div className="header-actions">
+        <Link to="/user/login">
+          <Button type="primary" shape="round">
+            登录
+          </Button>
+        </Link>
+      </div>
+    );
+  }
+
+  // @ts-ignore
   return (
-    <HeaderDropdown
-      menu={{
-        selectedKeys: [],
-        onClick: onMenuClick,
-        items: menuItems,
-      }}
-    >
-      <Space>
-        {currentUser?.userAvatar ? (
-          <Avatar size="small" src={currentUser?.userAvatar} />
-        ) : (
-          <Avatar size="small" icon={<UserOutlined />} />
-        )}
-        <span className="anticon">{currentUser?.userName ?? '无名'}</span>
-      </Space>
-    </HeaderDropdown>
+    <div className="header-actions">
+      <Button
+        type="primary"
+        shape="round"
+        icon={<EditOutlined />}
+        onClick={() => history.push('/writePost')}
+      >
+        写文章
+      </Button>
+
+      <HeaderDropdown
+        menu={{
+          selectedKeys: [],
+          onClick: onMenuClick,
+          items: menuItems,
+        }}
+      >
+        <Space>
+          {currentUser?.userAvatar ? (
+            <Avatar size="small" src={currentUser?.userAvatar} />
+          ) : (
+            <Avatar size="small" icon={<UserOutlined />} />
+          )}
+          {currentUser?.userName?.length > 2 ? `${currentUser.userName.slice(0, 2)}...` : currentUser?.userName ?? '无名'}
+        </Space>
+      </HeaderDropdown>
+    </div>
   );
 };
-
-export const AvatarName = () => {};
