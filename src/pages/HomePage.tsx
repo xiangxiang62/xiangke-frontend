@@ -87,7 +87,7 @@ const Welcome: React.FC = () => {
         flexDirection: 'column', // 使搜索框和文章列表垂直排列
       }}>
         <Search
-          placeholder="input search text"
+          placeholder="请搜索感兴趣的文章"
           allowClear
           enterButton="搜索"
           size="large"
@@ -96,7 +96,7 @@ const Welcome: React.FC = () => {
           onSearch={onSearch} // 搜索按钮点击时触发搜索
           style={{ width: "60vw" }}
         />
-        <div style={{ padding: '60px 20px 0px 20px', width: '120vw' }}>
+        <div style={{ padding: '60px 20px 0px 20px', width: '100vw' }}>
           {articleContentList && articleContentList.length > 0 ? (
             <ArticleList  articles={articleContentList} />
           ) : (

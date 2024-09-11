@@ -44,7 +44,16 @@ const Welcome: React.FC = () => {
   }, [id]);
 
   if (loading) {
-    return <div><Spin tip="Loading" size="large" /></div>; // 显示加载状态
+    return <div style={{
+      display: 'flex',
+      justifyContent: 'center', // 水平居中
+      alignItems: 'center',    // 垂直居中
+      height: '100vh',         // 使容器占满视口高度
+      width: '100vw',          // 使容器占满视口宽度
+      backgroundColor: '#f0f2f5' // 可选：设置背景颜色以增强对比度
+    }}>
+      <Spin tip="Loading" size="large" />
+    </div>; // 显示加载状态
   }
 
   // 处理头像点击事件
@@ -68,17 +77,18 @@ const Welcome: React.FC = () => {
   return (
     <PageContainer
       style={{
-        background: 'linear-gradient(to bottom, #DCDCDC, #f5f5f5)', // 淡蓝色上下渐变
+        background: 'linear-gradient(to bottom, #cccccc, #fff)', // 淡蓝色上下渐变
       }}
     >
       <Card
         style={{
           width: '100%',
-          marginTop: '50px',
-          marginLeft: 0,
-          marginRight: 0,
-          // paddingLeft: '5%',
-          // paddingRight: '5%',
+          height: '-10vh',  // 高度设为视口高度
+          margin: '50px 0px',        // 移除所有边距
+          padding: 0,       // 移除所有内边距
+          position: 'absolute', // 绝对定位
+          top: 0,           // 顶部位置为0
+          left: 0           // 左侧位置为0
         }}
       >
         <UserInfo

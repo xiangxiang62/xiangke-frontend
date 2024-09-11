@@ -5,7 +5,6 @@ import moment from 'moment';
 
 const { TextArea } = Input;
 
-// 定义评论类型
 interface CommentData {
   author: string;
   avatar: string;
@@ -14,7 +13,6 @@ interface CommentData {
   replies: CommentData[];
 }
 
-// 模拟数据
 const initialData: CommentData[] = [
   {
     author: 'John Doe',
@@ -89,29 +87,39 @@ const CommentComponent: React.FC<{ comment: CommentData; addReply: (reply: Comme
   };
 
   return (
-    <Comment
-      author={comment.author}
-      avatar={<Avatar src={comment.avatar} alt={comment.author} />}
-      content={comment.content}
-      datetime={comment.datetime}
-      actions={[
-        <span key="reply" onClick={() => setReplying(!replying)}>
-          回复
-        </span>,
-      ]}
-    >
-      {replying && (
-        <Editor
-          onChange={(e) => setValue(e.target.value)}
-          onSubmit={handleReply}
-          submitting={submitting}
-          value={value}
-        />
-      )}
+    <>
+      <Comment
+        author={comment.author}
+        avatar={<Avatar src={comment.avatar} alt={comment.author} />}
+        content={comment.content}
+        datetime={comment.datetime}
+        actions={[
+          <span key="reply" onClick={() => setReplying(!replying)}>
+            回复
+          </span>,
+        ]}
+      >
+        {replying && (
+          <Editor
+            onChange={(e) => setValue(e.target.value)}
+            onSubmit={handleReply}
+            submitting={submitting}
+            value={value}
+          />
+        )}
+      </Comment>
+      {/* Render all replies at the same level */}
       {comment.replies.map((reply, index) => (
-        <CommentComponent key={index} comment={reply} addReply={addReply} />
+        <Comment
+          key={index}
+          author={reply.author}
+          avatar={<Avatar src={reply.avatar} alt={reply.author} />}
+          content={reply.content}
+          datetime={reply.datetime}
+          style={{ marginLeft: '40px' }}
+        />
       ))}
-    </Comment>
+    </>
   );
 };
 

@@ -97,7 +97,7 @@ const Welcome: React.FC = () => {
           onSearch={onSearch} // 搜索按钮点击时触发搜索
           style={{ width: "60vw" }}
         />
-        <div style={{ padding: '60px 20px 0px 20px', width: '120vw' }}>
+        <div style={{ padding: '60px 20px 0px 20px', width: '100vw' }}>
           {articleContentList && articleContentList.length > 0 ? (
             <ArticleList  articles={articleContentList} />
           ) : (
