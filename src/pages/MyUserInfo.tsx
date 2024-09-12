@@ -1,10 +1,12 @@
+// src/pages/UserProfile.tsx
 import React, { useEffect, useState } from 'react';
-import {Card, Avatar, Descriptions, Badge, Button, Modal, Form, Input, message, Tag} from 'antd';
+import { Card, Avatar, Descriptions, Badge, Button, Modal, Form, Input, message, Tag } from 'antd';
 import { useModel } from '@umijs/max';
 import { UserOutlined } from '@ant-design/icons';
 import { useLocation } from 'react-router-dom';
 import { getUserVoById, updateMyUser } from '@/services/backend/userController';
 import { UserVO } from '@/services/backend/typings';
+import ContributionCalendar from '../components/ContributionCalendar/ContributionCalendar'; // 引入 ContributionCalendar
 
 const UserProfile: React.FC = () => {
   const { initialState } = useModel('@@initialState');
@@ -14,6 +16,32 @@ const UserProfile: React.FC = () => {
   const location = useLocation(); // 获取 location 对象
   const id = location.state?.id; // 从 state 中获取 ID
   const [form] = Form.useForm(); // Ant Design 表单实例
+  const [calendarData, setCalendarData] = useState<Record<string, number>>({}); // 贡献数据
+
+// 创建 mock 数据
+const articles: any = {
+  "2024-01-01": 3,
+  "2024-01-02": 6,
+  "2024-01-03": 22,
+  "2024-02-01": 3,
+  "2024-02-02": 6,
+  "2024-02-03": 2,
+  "2024-03-01": 32,
+  "2024-03-02": 6,
+  "2024-03-03": 2,
+  "2024-04-01": 32,
+  "2024-04-02": 6,
+  "2024-04-03": 2,
+  "2024-05-03": 2,
+  "2024-05-01": 32,
+  "2024-05-02": 6,
+  "2024-06-03": 2,
+  "2024-08-01": 32,
+  "2024-09-02": 6,
+  "2024-08-03": 2,
+  "2024-11-03": 299,
+  // ... 添加更多数据
+};
 
   useEffect(() => {
     // 如果有 ID 参数，则获取该用户的信息
@@ -24,6 +52,24 @@ const UserProfile: React.FC = () => {
           const res = await getUserVoById({ id }); // 替换为实际的 ID 或参数
           setUser(res.data); // 根据实际的响应结构调整
           form.setFieldsValue(res.data); // 设置表单初始值
+          
+          // 示例贡献数据
+          setCalendarData({
+            "2024-01-01": 3,
+            "2024-01-02": 6,
+            "2024-01-03": 22,
+            "2024-02-01": 3,
+            "2024-02-02": 6,
+            "2024-02-03": 2,
+            "2024-03-01": 32,
+            "2024-03-02": 6,
+            "2024-03-03": 2,
+            "2024-04-01": 32,
+            "2024-04-02": 6,
+            "2024-04-03": 2,
+            "2024-11-03": 299,
+            // ... 添加更多数据
+          });
         } catch (error) {
           console.error('获取用户信息失败:', error);
         } finally {
@@ -71,9 +117,9 @@ const UserProfile: React.FC = () => {
   }
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh', backgroundColor: '#f0f2f5' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', minHeight: '100vh', backgroundColor: '#f0f2f5' }}>
       <Card
-        style={{ width: 400, borderRadius: 10, boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}
+        style={{ width: 400, borderRadius: 10, boxShadow: '0 4px 8px rgba(0,0,0,0.1)', marginBottom: 20 }}
         bodyStyle={{ padding: '20px 24px' }}
       >
         <div style={{ textAlign: 'center', marginBottom: 20 }}>
@@ -84,7 +130,7 @@ const UserProfile: React.FC = () => {
             style={{ marginBottom: 20 }}
           />
           <h2>{user?.userName || '未命名用户'}</h2>
-          <p><Tag color="#87d068">{user?.userRole == "user" ? "普通用户" : "管理员"}</Tag></p>
+          <p><Tag color="#87d068">{user?.userRole === "user" ? "普通用户" : "管理员"}</Tag></p>
           <p style={{ color: 'rgba(0, 0, 0, 0.45)' }}>{user?.userProfile || '这位用户很神秘，没有留下任何个人简介。'}</p>
         </div>
         <Descriptions bordered column={1}>
@@ -96,7 +142,7 @@ const UserProfile: React.FC = () => {
           <Descriptions.Item label="更新时间">{user?.updateTime || '未知'}</Descriptions.Item>
         </Descriptions>
         {/* 添加修改信息按钮 */}
-        <Button type="primary" onClick={handleEditClick} style={{ marginTop: 20,width:'100%' }}>
+        <Button type="primary" onClick={handleEditClick} style={{ marginTop: 20, width: '100%' }}>
           修改信息
         </Button>
       </Card>
@@ -123,6 +169,10 @@ const UserProfile: React.FC = () => {
           </Form.Item>
         </Form>
       </Modal>
+
+      {/* 年度贡献日历 */}
+      <h2>年度贡献日历</h2>
+      <ContributionCalendar data={articles} />
     </div>
   );
 };
