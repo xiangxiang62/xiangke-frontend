@@ -22,7 +22,8 @@ const ArticleList: React.FC<ArticleListProps> = ({ articles }) => {
           key={article.id}
           hoverable={true}
           title={
-            <div style={{ display: 'flex', alignItems: 'center'}}>
+            <div>
+            <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
               <img
                 alt="头像"
                 src={article.user?.userAvatar} // 替换为头像的 URL
@@ -35,20 +36,46 @@ const ArticleList: React.FC<ArticleListProps> = ({ articles }) => {
                   // boxShadow: '0 0 10px rgba(0, 0, 0, 0.3)', // 头像阴影
                 }}
               />
-              <Title
-                level={4}
-                style={{
-                  margin: 0,
-                  cursor: 'pointer',
-                  overflow: 'hidden',  // 隐藏溢出的内容
-                  textOverflow: 'ellipsis', // 溢出部分显示省略号
-                  whiteSpace: 'normal', // 允许换行
-                }}
-                onClick={() => handleTitleClick(article.id)}
-              >
-                {article.title}
-              </Title>
+              <div>
+                <strong
+                  style={{
+                    display: 'block', // 让 strong 标签占据整行
+                    margin: 0,
+                    cursor: 'pointer',
+                    overflow: 'hidden',  // 隐藏溢出的内容
+                    textOverflow: 'ellipsis', // 溢出部分显示省略号
+                    whiteSpace: 'normal', // 允许换行
+                  }}
+                  onClick={() => handleTitleClick(article.id)}
+                >
+                  {article.user?.userName}
+                </strong>
+                <p
+                  style={{
+                    margin: 0,
+                    color: '#999', // 灰色字体
+                    fontSize: '12px', // 小号字体
+                  }}
+                >
+                  {article?.createdTime || '2024.01.01'} {/* 使用 article.date 或默认日期 */}
+                </p>
+              </div>
             </div>
+            <Title
+              level={4}
+              style={{
+                margin: 0,
+                cursor: 'pointer',
+                overflow: 'hidden',  // 隐藏溢出的内容
+                textOverflow: 'ellipsis', // 溢出部分显示省略号
+                whiteSpace: 'normal', // 允许换行
+              }}
+              onClick={() => handleTitleClick(article.id)}
+            >
+              {article.title}
+            </Title>
+          </div>
+            
           }
           bordered={false}
           style={{
