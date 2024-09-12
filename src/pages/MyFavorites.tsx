@@ -76,7 +76,7 @@ const Welcome: React.FC = () => {
   return (
     <PageContainer
       style={{
-        background: 'linear-gradient(to bottom, #DCDCDC, #C0C0C0)', // 淡蓝色上下渐变
+      //   background: 'e5e5e5', 淡蓝色上下渐变
         minHeight: "1000px"
       }}
     >

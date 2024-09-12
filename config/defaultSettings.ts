@@ -15,7 +15,8 @@ const Settings: ProLayoutProps & {
   fixedHeader: true,
   fixSiderbar: true, // 修正拼写错误
   colorWeak: false,
-  title: '香客',
+  logo:'/logo.png',
+  title: '享客',
   pwa: true,
   iconfontUrl: '',
   token: {

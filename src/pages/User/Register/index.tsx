@@ -112,7 +112,7 @@ const Register: React.FC = () => {
             maxWidth: '75vw',
           }}
           logo={<img alt="logo" style={{height: '100%'}} src="/logo.png"/>}
-          title="香客"
+          title="享客"
           subTitle={'快来测试一下你的水平吧'}
           initialValues={{
             autoLogin: true,

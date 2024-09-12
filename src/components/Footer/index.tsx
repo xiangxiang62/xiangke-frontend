@@ -15,7 +15,7 @@ const Footer: React.FC = () => {
       links={[
         {
           key: 'codeNav',
-          title: '香客',
+          title: '享客',
           href: '',
           blankTarget: true,
         },

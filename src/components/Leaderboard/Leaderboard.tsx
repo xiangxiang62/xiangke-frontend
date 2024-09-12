@@ -24,7 +24,7 @@ const users: User[] = [
 
 // 封装排行榜组件
 const Leaderboard: React.FC = () => (
-  <Card title="用户活跃排行榜" bordered={false} style={{ width: 300 }}>
+  <Card title="用户活跃排行榜" bordered={false} style={{ width: 300,background: 'linear-gradient(to bottom, orange 10px, white 60px, white 100%)' }}>
     <List
       dataSource={users}
       renderItem={item => (

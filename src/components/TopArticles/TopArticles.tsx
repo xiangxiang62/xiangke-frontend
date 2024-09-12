@@ -25,7 +25,7 @@ const articles: Article[] = [
 
 // 封装热门文章排行榜组件
 const TopArticles: React.FC = () => (
-  <Card title="热门文章排行榜" bordered={false} style={{ width: 300 }}>
+  <Card title="热门文章排行榜" bordered={false} style={{ width: 300 ,background: 'linear-gradient(to bottom, orange 10px, white 60px, white 100%)'}}>
     <List
       dataSource={articles}
       renderItem={item => (
