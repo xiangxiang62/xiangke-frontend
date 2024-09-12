@@ -16,7 +16,7 @@ const ArticleList: React.FC<ArticleListProps> = ({ articles }) => {
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', maxWidth: '800px', margin: '0 auto' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', maxWidth: '700px', margin: '0 auto' }}>
       {articles.map(article => (
         <Card
           key={article.id}
