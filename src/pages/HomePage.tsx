@@ -41,7 +41,7 @@ const Welcome: React.FC = () => {
       title: searchValue,
     };
     fetchArticles(queryRequest);
-  }, [pageNum, searchValue]); // 页码和搜索值作为依赖
+  }, [pageNum]); // 页码和搜索值作为依赖
 
   // 更新搜索框的值
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -80,6 +80,7 @@ const Welcome: React.FC = () => {
   return (
     <PageContainer
       style={{
+        backgroundColor:"#fff",
         minHeight: "1000px"
       }}
     >
@@ -103,7 +104,7 @@ const Welcome: React.FC = () => {
         {/* 使用 Row 和 Col 布局 */}
         <Row gutter={20} style={{ marginTop: 20 }}>
           {/* 手机端和 PC 端布局不同 */}
-          <Col xs={24} sm={24} md={16} lg={16} xl={16} style={{ padding: 20 }}>
+          <Col xs={24} sm={24} md={16} lg={16} xl={16} style={{ padding:"20 0" }}>
             <div style={{ minHeight: '300px' }}>
               {articleContentList && articleContentList.length > 0 ? (
                 <ArticleList articles={articleContentList} />
@@ -112,7 +113,14 @@ const Welcome: React.FC = () => {
               )}
             </div>
           </Col>
-          <Col xs={24} sm={24} md={8} lg={4} xl={4} style={{ padding: 20 }}>
+          <Pagination
+            showQuickJumper
+            current={pageNum}
+            total={totalNum}
+            onChange={handlePageNumChange}
+            style={{ marginTop: 20 }}
+          />
+          <Col xs={24} sm={24} md={8} lg={4} xl={4} style={{ padding: "20 0" }}>
             <div style={{ marginBottom: 20 }}>
               <Leaderboard />
             </div>
@@ -122,13 +130,7 @@ const Welcome: React.FC = () => {
           </Col>
         </Row>
 
-        <Pagination
-          showQuickJumper
-          current={pageNum}
-          total={totalNum}
-          onChange={handlePageNumChange}
-          style={{ marginTop: 20 }}
-        />
+
       </div>
     </PageContainer>
   );

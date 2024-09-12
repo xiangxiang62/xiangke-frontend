@@ -76,7 +76,7 @@ const Welcome: React.FC = () => {
   return (
     <PageContainer
       style={{
-      //   background: 'e5e5e5', 淡蓝色上下渐变
+        background: '#fff',
         minHeight: "1000px"
       }}
     >

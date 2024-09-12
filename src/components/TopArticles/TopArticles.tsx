@@ -34,7 +34,7 @@ const TopArticles: React.FC = () => (
             <Typography.Text strong>{item.rank}. {item.title}</Typography.Text>
             <div>
               <Typography.Text>作者: {item.author}</Typography.Text>
-              <Typography.Text style={{ marginLeft: 'auto' }}>阅读: {item.views}</Typography.Text>
+              <Typography.Text style={{ marginLeft: '0px' }}>&nbsp;&nbsp;&nbsp;阅读: {item.views}</Typography.Text>
             </div>
           </div>
         </List.Item>

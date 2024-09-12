@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, List, Typography } from 'antd';
-
+import { FireOutlined } from '@ant-design/icons';
 // 定义用户数据的接口
 interface User {
   rank: number;
@@ -30,7 +30,7 @@ const Leaderboard: React.FC = () => (
       renderItem={item => (
         <List.Item>
           <Typography.Text>{item.rank}. {item.name}</Typography.Text>
-          <Typography.Text style={{ marginLeft: 'auto' }}>活跃度: {item.activity}</Typography.Text>
+          <Typography.Text style={{ marginLeft: 'auto' }}><FireOutlined /> {item.activity}</Typography.Text>
         </List.Item>
       )}
     />
