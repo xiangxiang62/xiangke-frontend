@@ -107,19 +107,24 @@ const Welcome: React.FC = () => {
           <Col xs={24} sm={24} md={16} lg={16} xl={16} style={{ padding:"20 0" }}>
             <div style={{ minHeight: '300px' }}>
               {articleContentList && articleContentList.length > 0 ? (
-                <ArticleList articles={articleContentList} />
+                <div>
+                  <ArticleList articles={articleContentList} />
+                  <Pagination
+                    showQuickJumper
+                    current={pageNum}
+                    total={totalNum}
+                    onChange={handlePageNumChange}
+                    style={{ marginBottom: 30 }}
+                  />
+                </div>
+
               ) : (
                 <Empty style={{ paddingTop: "100px" }} />
               )}
             </div>
+
           </Col>
-          <Pagination
-            showQuickJumper
-            current={pageNum}
-            total={totalNum}
-            onChange={handlePageNumChange}
-            style={{ marginTop: 20 }}
-          />
+
           <Col xs={24} sm={24} md={8} lg={4} xl={4} style={{ padding: "20 0" }}>
             <div style={{ marginBottom: 20 }}>
               <Leaderboard />

@@ -46,7 +46,7 @@ console.log(response+"qqq")
   return (
     <PageContainer
       style={{
-        background: 'linear-gradient(to bottom, #DCDCDC, #f5f5f5)', // 淡蓝色上下渐变
+        background: '#fff', // 淡蓝色上下渐变
       }}
     >
       <h1><strong>新建文章</strong></h1>
