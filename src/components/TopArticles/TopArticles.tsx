@@ -3,7 +3,7 @@ import { Card, List, Typography } from 'antd';
 
 // 定义文章数据的接口
 interface Article {
-  rank: number;
+  rank: any;
   title: string;
   author: string;
   views: number;
@@ -11,9 +11,9 @@ interface Article {
 
 // 创建 mock 数据
 const articles: Article[] = [
-  { rank: 1, title: '如何提升编程技能', author: 'Alice', views: 1500 },
-  { rank: 2, title: 'React 高级技巧', author: 'Bob', views: 1400 },
-  { rank: 3, title: 'JavaScript 性能优化', author: 'Charlie', views: 1300 },
+  { rank: "🥇", title: '如何提升编程技能', author: 'Alice', views: 1500 },
+  { rank:"🥈", title: 'React 高级技巧', author: 'Bob', views: 1400 },
+  { rank:"🥉",title: 'JavaScript 性能优化', author: 'Charlie', views: 1300 },
   { rank: 4, title: 'TypeScript 入门指南', author: 'David', views: 1200 },
   { rank: 5, title: '前端工程化实践', author: 'Eva', views: 1100 },
   { rank: 6, title: 'CSS 布局技巧', author: 'Frank', views: 1000 },
