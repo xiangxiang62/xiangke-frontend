@@ -12,7 +12,7 @@ const Settings: ProLayoutProps & {
   colorPrimary: '#1890ff',
   layout: 'top',
   contentWidth: 'Fluid',
-  fixedHeader: true,
+  fixedHeader: false,
   fixSiderbar: true, // 修正拼写错误
   colorWeak: false,
   logo:'/logo.png',

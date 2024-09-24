@@ -3,6 +3,7 @@ import { Button, Tooltip, Badge, Modal, message, Input, QRCode, Popover } from '
 import { LikeOutlined, StarOutlined, CommentOutlined, ExclamationCircleOutlined, ShareAltOutlined } from '@ant-design/icons';
 import './FloatingActionPanel.css'; // 引入自定义样式
 import { doArticleFavourUsingPost } from "@/services/backend/articleFavourController";
+import {doThumbUsingPost} from "@/services/backend/articleLikeController";
 
 const { TextArea } = Input;
 const currentUrl = window.location.href;
@@ -13,6 +14,7 @@ interface FloatingActionPanelProps {
   likeNum: number; // 点赞数
   favourNum: number; // 收藏数
   starred: boolean; // 收藏状态
+  liked: boolean;
 }
 
 const FloatingActionPanel: React.FC<FloatingActionPanelProps> = ({
@@ -20,17 +22,20 @@ const FloatingActionPanel: React.FC<FloatingActionPanelProps> = ({
                                                                    likeNum,
                                                                    favourNum,
                                                                    id,
+                                                                   liked,
                                                                    starred
                                                                  }) => {
   const [isModalVisible, setIsModalVisible] = useState(false); // 控制弹出层的可见性
-  const [liked, setLiked] = useState(false); // 状态来控制点赞按钮的点击状态
+  const [likedNew, setLikedNew] = useState(liked); // 状态来控制点赞按钮的点击状态
   const [starredNew, setStarredNew] = useState(starred); // 状态来控制收藏按钮的点击状态
   const [currentFavourNum, setCurrentFavourNum] = useState(favourNum); // 状态来跟踪收藏数
+  const [currentLikeNum, setCurrentLikeNum] = useState(likeNum); // 状态来跟踪收藏数
 
   useEffect(() => {
     // 初始化收藏状态
     setStarredNew(starred);
-  }, [starred]); // 依赖 starred，当 starred 变化时更新状态
+    setLikedNew(liked);
+  }, [starred,liked]); // 依赖 starred，当 starred 变化时更新状态
 
   const showReportModal = () => {
     setIsModalVisible(true); // 显示弹出层
@@ -45,8 +50,21 @@ const FloatingActionPanel: React.FC<FloatingActionPanelProps> = ({
     setIsModalVisible(false); // 关闭弹出层
   };
 
-  const handleLikeClick = () => {
-    setLiked(!liked); // 切换点赞状态
+  const handleLikeClick = async () => {
+    // setLikedNew(!liked); // 切换点赞状态
+    try {
+      await doThumbUsingPost({ id }); // 发送收藏请求
+      setLikedNew(prevLikedNew => {
+        const newLikedStatus = !prevLikedNew;
+        setCurrentLikeNum(prevLikeNum => newLikedStatus ? prevLikeNum + 1 : prevLikeNum - 1);
+        console.log(newLikedStatus)
+
+        return newLikedStatus;
+      });
+      message.success(likedNew ? '已取消点赞' : '文章已点赞'); // 提示收藏状态
+    } catch (error) {
+      message.error('点赞操作失败');
+    }
   };
 
   const handleStarClick = async () => {
@@ -66,13 +84,14 @@ const FloatingActionPanel: React.FC<FloatingActionPanelProps> = ({
   return (
     <div className="floating-action-panel">
       <Tooltip title="点赞">
-        <Badge count={likeNum} overflowCount={9999} className="action-badge">
+        <Badge count={currentLikeNum} overflowCount={9999} className="action-badge">
           <Button
             shape="circle"
             icon={<LikeOutlined />}
-            className={`action-button ${liked ? 'liked' : ''}`} // 根据状态切换 CSS 类
+            className={`action-button ${likedNew ? 'liked' : ''}`} // 根据状态切换 CSS 类
             onClick={handleLikeClick}
           />
+
         </Badge>
       </Tooltip>
       <Tooltip title="收藏">

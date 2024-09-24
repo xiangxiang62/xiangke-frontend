@@ -9,6 +9,7 @@ import * as postFavourController from './postFavourController';
 import * as postThumbController from './postThumbController';
 import * as userController from './userController';
 import * as wxMpController from './wxMpController';
+import * as articleLikeController from "@/services/backend/articleLikeController";
 export default {
   userController,
   postThumbController,
@@ -16,5 +17,6 @@ export default {
   postController,
   articleController,
   fileController,
+  articleLikeController,
   wxMpController,
 };

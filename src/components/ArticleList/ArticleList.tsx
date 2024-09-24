@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 import { Card, Typography } from 'antd';
 import { CommentOutlined, LikeOutlined, StarOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
@@ -22,6 +23,20 @@ const ArticleList: React.FC<ArticleListProps> = ({ articles }) => {
     navigate('/my/userInfo', { state: { id: userId } }); // 导航到用户信息页
   };
 
+  // 格式化发布时间的函数
+  const formatCreatedTime = (createdTime: string) => {
+    const time = moment(createdTime); // 使用 moment 解析时间
+    const now = moment(); // 当前时间
+
+    // 如果时间差小于等于3天，返回相对时间
+    if (now.diff(time, 'days') <= 3) {
+      return time.fromNow(); // 例如 "6 days ago"
+    }
+
+    // 否则返回具体日期时间
+    return time.format('YYYY-MM-DD HH:mm:ss'); // 例如 "2024-09-13 16:25:13"
+  };
+
   return (
     <div
       style={{
@@ -40,7 +55,7 @@ const ArticleList: React.FC<ArticleListProps> = ({ articles }) => {
             width: '100%',
             marginBottom: '20px',
             background: 'rgba(255, 255, 255, 0.8)', // 设置背景色
-            paddingTop: '16px',
+            padding: '16px 16px',
             cursor: 'pointer',
             transition: 'box-shadow 0.3s', // 添加过渡效果
           }}
@@ -72,6 +87,7 @@ const ArticleList: React.FC<ArticleListProps> = ({ articles }) => {
               >
                 {article.user?.userName}
               </strong>
+              <div style={{paddingTop:5}}></div>
               <p
                 style={{
                   margin: 0,
@@ -79,13 +95,13 @@ const ArticleList: React.FC<ArticleListProps> = ({ articles }) => {
                   fontSize: '12px', // 小号字体
                 }}
               >
-                {article.createdTime || '2024.01.01'}
+                {formatCreatedTime(article.createdTime)} {/* 使用格式化时间 */}
               </p>
             </div>
           </div>
 
           <Title
-            level={4}
+            level={5}
             style={{
               margin: 0,
               cursor: 'pointer',
@@ -99,16 +115,23 @@ const ArticleList: React.FC<ArticleListProps> = ({ articles }) => {
           </Title>
 
           <Paragraph ellipsis={{ rows: 2, expandable: true }} style={{ marginTop: '10px' }}>
-            {article.category}
+             {/*{article.category}*/}
           </Paragraph>
-          <div style={{ marginTop: '10px', color: '#999' }}>
-            <LikeOutlined /> {article.likeNum}
+          <div style={{ marginTop: '20px', color: '#999' }}>
+            <a style={{ color: 'inherit', textDecoration: 'none' }}>
+              <LikeOutlined /> {article.likeNum}
+            </a>
+
+
             &nbsp;&nbsp;&nbsp;&nbsp;
-            <StarOutlined /> {article.favourNum}
+            <a style={{ color: 'inherit', textDecoration: 'none' }}>
+              <StarOutlined /> {article.favourNum}
+            </a>
+
             &nbsp;&nbsp;&nbsp;&nbsp;
             <CommentOutlined /> 0
           </div>
-          <br />
+          {/*<br />*/}
           <hr style={{ backgroundColor: '#f0f0f0', height: '1px', border: 'none' }} /> {/* 修改后的 hr 样式 */}
         </div>
       ))}

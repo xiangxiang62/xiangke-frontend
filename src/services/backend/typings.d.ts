@@ -300,4 +300,8 @@ declare namespace API {
     userProfile?: string;
     userRole?: string;
   };
+
+  type ArticleLikeAddRequest = {
+    id?: number;
+  };
 }

@@ -9,6 +9,7 @@ import UserInfo from '@/components/UserInfo/UserInfo';
 import { getArticleVoByIdUsingGet } from '@/services/backend/articleController';
 import { useNavigate, useParams } from 'react-router-dom';
 import ArticleVO from '@/services/backend/typings';
+import TableOfContents from "@/components/TableOfContents/TableOfContents";
 
 const Welcome: React.FC = () => {
   const [articleContent, setArticleContent] = useState<ArticleVO>(); // 存储文章内容
@@ -74,6 +75,15 @@ const Welcome: React.FC = () => {
       hour12: false, // 使用 24 小时制
     }).replace(',', ''); // 移除默认的逗号分隔符
   };
+
+  // 平滑滚动到对应锚点位置
+  const scrollToAnchor = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <PageContainer
       style={{
@@ -124,12 +134,14 @@ const Welcome: React.FC = () => {
           likeNum={articleContent?.likeNum ?? 0}
           id={id}
           starred={articleContent?.starred}
+          liked={articleContent?.liked}
         />
         <hr />
         <div ref={commentsRef}> {/* 使用 ref 属性指向这个 div */}
           <Comments />
         </div>
       </Card>
+      <TableOfContents content={articleContent?.content} onAnchorClick={scrollToAnchor} />
     </PageContainer>
   );
 };
