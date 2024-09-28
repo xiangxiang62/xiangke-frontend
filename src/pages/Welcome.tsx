@@ -34,13 +34,14 @@ const Welcome: React.FC = () => {
       try {
         const response = await getArticleVoByIdUsingGet({ id }); // 替换为实际的 ID 或参数
         setArticleContent(response.data); // 根据实际的响应结构调整
+        console.log(articleContent.id + "idid")
+
         setLoading(false);
       } catch (error) {
         console.error('获取文章失败:', error);
         setLoading(false);
       }
     };
-
     fetchArticle();
   }, [id]);
 
@@ -138,7 +139,7 @@ const Welcome: React.FC = () => {
         />
         <hr />
         <div ref={commentsRef}> {/* 使用 ref 属性指向这个 div */}
-          <Comments />
+          <Comments id={1}/>
         </div>
       </Card>
       <TableOfContents content={articleContent?.content} onAnchorClick={scrollToAnchor} />

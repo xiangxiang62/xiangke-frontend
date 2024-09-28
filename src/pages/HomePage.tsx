@@ -99,6 +99,7 @@ const Welcome: React.FC = () => {
   return (
     <PageContainer
       style={{
+        // backgroundColor: "rgb(229, 229, 229)",
         backgroundColor: "#fff",
         minHeight: "1000px"
       }}

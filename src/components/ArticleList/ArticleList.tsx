@@ -29,9 +29,9 @@ const ArticleList: React.FC<ArticleListProps> = ({ articles }) => {
     const now = moment(); // 当前时间
 
     // 如果时间差小于等于3天，返回相对时间
-    if (now.diff(time, 'days') <= 3) {
-      return time.fromNow(); // 例如 "6 days ago"
-    }
+    // if (now.diff(time, 'days') <= 3) {
+    //   return time.fromNow(); // 例如 "6 days ago"
+    // }
 
     // 否则返回具体日期时间
     return time.format('YYYY-MM-DD HH:mm:ss'); // 例如 "2024-09-13 16:25:13"
