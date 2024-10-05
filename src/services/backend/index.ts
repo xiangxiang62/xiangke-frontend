@@ -11,6 +11,7 @@ import * as userController from './userController';
 import * as wxMpController from './wxMpController';
 import * as articleLikeController from "@/services/backend/articleLikeController";
 import * as articleCommentController from "@/services/backend/articleCommentController";
+import * as dailyScheduleController from "@/services/backend/dailyScheduleController";
 export default {
   userController,
   postThumbController,
@@ -20,5 +21,6 @@ export default {
   fileController,
   articleLikeController,
   articleCommentController,
+  dailyScheduleController,
   wxMpController,
 };

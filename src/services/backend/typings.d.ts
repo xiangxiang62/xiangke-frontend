@@ -152,6 +152,12 @@ declare namespace API {
     message?: string;
   };
 
+  type BaseResponseListDailySchedule_ = {
+    code?: number;
+    data?: DailySchedule[];
+    message?: string;
+  };
+
   type BaseResponseLoginUserVO_ = {
     code?: number;
     data?: LoginUserVO;
@@ -194,6 +200,12 @@ declare namespace API {
     message?: string;
   };
 
+  type BaseResponseTaskHistory_ = {
+    code?: number;
+    data?: TaskHistory;
+    message?: string;
+  };
+
   type BaseResponseUser_ = {
     code?: number;
     data?: User;
@@ -206,8 +218,23 @@ declare namespace API {
     message?: string;
   };
 
+  type DailySchedule = {
+    createTime?: string;
+    id?: number;
+    isDelete?: number;
+    planName?: string;
+    todayIsFinish?: number;
+    updateTime?: string;
+    userId?: number;
+  };
+
   type DeleteRequest = {
     id?: number;
+  };
+
+  type finishDailyScheduleByIdUsingPOSTParams = {
+    /** dailyId */
+    dailyId?: number;
   };
 
   type getArticleCommentsUsingGETParams = {
@@ -297,11 +324,23 @@ declare namespace API {
     total?: number;
   };
 
+  type queryHistoryDailyScheduleUsingPOSTParams = {
+    /** today */
+    today: string;
+  };
+
   type sendEmailUsingGETParams = {
     /** email */
     email: string;
     /** type */
     type: string;
+  };
+
+  type TaskHistory = {
+    historyTaskInfo?: string;
+    id?: number;
+    taskTime?: string;
+    userId?: number;
   };
 
   type uploadFileUsingPOSTParams = {

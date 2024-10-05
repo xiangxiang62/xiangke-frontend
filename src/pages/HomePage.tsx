@@ -37,8 +37,10 @@ const Welcome: React.FC = () => {
 
     try {
       const response = await listArticleVoByPageUsingPost(queryRequest);
-      setArticleContentList(response.data.records);
-      setTotalNum(response.data.total);
+      // @ts-ignore
+      setArticleContentList(response?.data?.records);
+      // @ts-ignore
+      setTotalNum(response?.data.total);
     } catch (error) {
       console.error('获取文章失败:', error);
       setError('获取文章失败，请稍后再试。');
@@ -79,6 +81,7 @@ const Welcome: React.FC = () => {
   const onTabChange = (key: string) => {
     setActiveTabKey(key);
     const selectedCategory = items.find(item => item.key === key)?.label || '';
+    // @ts-ignore
     setCategory(selectedCategory === '全部' ? '' : selectedCategory);
   };
 
@@ -152,7 +155,7 @@ const Welcome: React.FC = () => {
                   minWidth: '400px',
                   maxWidth: '900px',
                   margin: '0 0',
-                height:"300px"}}>
+                  height:"300px"}}>
                   <Empty style={{ paddingTop: "100px" }} />
                 </div>
 
